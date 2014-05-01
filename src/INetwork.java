@@ -49,4 +49,11 @@ public interface INetwork
 	 * @return Whether or not this network contains the specified city.
 	 */
 	public boolean contains(Node city);
+
+	/**
+	 * Test if this network contains any of the listed cities.
+	 * @param cities A list of nodes to check for.
+	 * @return Whether or not this network contains any of the listed nodes.
+	 */
+	public boolean containsAny(LinkedList<Node> cities);
 }

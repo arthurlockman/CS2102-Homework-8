@@ -34,4 +34,11 @@ public interface IGraph
 	 * @return A LinkedList of networks contained in this graph.
 	 */
 	LinkedList<Network> getNetworks();
+
+	/**
+	 * Gets a list of pairs of cities that should be connected
+	 * to create one network out of the entire graph.
+	 * @return A list of pairs that should be connected.
+	 */
+	LinkedList<Pair> getFlights();
 }

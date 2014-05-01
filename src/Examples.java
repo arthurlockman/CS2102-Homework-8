@@ -26,7 +26,6 @@ public class Examples
 		flightGraph.addEdge(chicago, denver);
 		flightGraph.addEdge(phoenix, houston);
 		flightGraph.addEdge(houston, tulsa);
-		flightGraph.addEdge(boston, chicago);
 	}
 
 	/**
@@ -41,11 +40,31 @@ public class Examples
 				t.checkExpect(flightGraph.hasRoute(chicago, denver), true) &&
 				t.checkExpect(flightGraph.hasRoute(phoenix, houston), true) &&
 				t.checkExpect(flightGraph.hasRoute(houston, tulsa), true) &&
-				t.checkExpect(flightGraph.hasRoute(boston, chicago), true) &&
+				t.checkExpect(flightGraph.hasRoute(boston, chicago), false) &&
 				t.checkExpect(flightGraph.hasRoute(boston, boston), true) &&
-				t.checkExpect(flightGraph.hasRoute(boston, denver), true) &&
+				t.checkExpect(flightGraph.hasRoute(boston, denver), false) &&
 				t.checkExpect(flightGraph.hasRoute(chicago, phoenix), false) &&
 				t.checkExpect(flightGraph.hasRoute(worcester, hartford), true) &&
-				t.checkExpect(flightGraph.hasRoute(chicago, worcester), true);
+				t.checkExpect(flightGraph.hasRoute(chicago, worcester), false);
+	}
+
+	/**
+	 * Tests the getNetworks method on graphs.
+	 * @param t The tester.
+	 * @return Whether or not the test passed.
+	 */
+	boolean testGetNetworks(Tester t)
+	{
+		return t.checkExpect(flightGraph.getNetworks(), null);
+	}
+
+	/**
+	 * Tests the getFlights method on graphs.
+	 * @param t The tester.
+	 * @return Whether or not the test passed.
+	 */
+	boolean testGetFlights(Tester t)
+	{
+		return t.checkExpect(flightGraph.getFlights(), null);
 	}
 }

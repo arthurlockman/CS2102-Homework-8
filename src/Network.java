@@ -122,4 +122,21 @@ public class Network implements INetwork
 		}
 		return false;
 	}
+
+	/**
+	 * Test if this network contains any of the listed cities.
+	 *
+	 * @param cities A list of nodes to check for.
+	 * @return Whether or not this network contains any of the listed nodes.
+	 */
+	@Override
+	public boolean containsAny(LinkedList<Node> cities)
+	{
+		boolean r = false;
+
+		for (Node n : cities)
+			r = this.contains(n);
+
+		return r;
+	}
 }
