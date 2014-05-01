@@ -7,18 +7,45 @@ import tester.Tester;
 
 public class Examples
 {
+	private Graph flightGraph = new Graph();
+	private Node boston, worcester, hartford, chicago, denver, phoenix, houston, tulsa;
+
 	Examples()
 	{
-		//Constructor
+		boston = flightGraph.newNode("Boston");
+		worcester = flightGraph.newNode("Worcester");
+		hartford = flightGraph.newNode("Hartford");
+		chicago = flightGraph.newNode("Chicago");
+		denver = flightGraph.newNode("Denver");
+		phoenix = flightGraph.newNode("Phoenix");
+		houston = flightGraph.newNode("Houston");
+		tulsa = flightGraph.newNode("Tulsa");
+
+		flightGraph.addEdge(boston, worcester);
+		flightGraph.addEdge(boston, hartford);
+		flightGraph.addEdge(chicago, denver);
+		flightGraph.addEdge(phoenix, houston);
+		flightGraph.addEdge(houston, tulsa);
+		flightGraph.addEdge(boston, chicago);
 	}
 
 	/**
-	 * An example test.
+	 * Tests the hasRoute method on graphs and on nodes.
 	 * @param t The tester.
 	 * @return Whether or not the test passed.
 	 */
-	boolean test1(Tester t)
+	boolean testHasRoute(Tester t)
 	{
-		return t.checkExpect(true, true);
+		return t.checkExpect(flightGraph.hasRoute(boston, worcester), true) &&
+				t.checkExpect(flightGraph.hasRoute(boston, hartford), true) &&
+				t.checkExpect(flightGraph.hasRoute(chicago, denver), true) &&
+				t.checkExpect(flightGraph.hasRoute(phoenix, houston), true) &&
+				t.checkExpect(flightGraph.hasRoute(houston, tulsa), true) &&
+				t.checkExpect(flightGraph.hasRoute(boston, chicago), true) &&
+				t.checkExpect(flightGraph.hasRoute(boston, boston), true) &&
+				t.checkExpect(flightGraph.hasRoute(boston, denver), true) &&
+				t.checkExpect(flightGraph.hasRoute(chicago, phoenix), false) &&
+				t.checkExpect(flightGraph.hasRoute(worcester, hartford), true) &&
+				t.checkExpect(flightGraph.hasRoute(chicago, worcester), true);
 	}
 }
