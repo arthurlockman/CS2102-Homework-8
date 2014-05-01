@@ -1,5 +1,3 @@
-import java.util.LinkedList;
-
 /**
  * An interface for creating nodes.
  */
