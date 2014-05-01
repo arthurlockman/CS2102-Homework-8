@@ -5,6 +5,8 @@
 
 import tester.Tester;
 
+import java.util.LinkedList;
+
 /**
  * A class to hold Homework 8 examples.
  */
@@ -14,6 +16,12 @@ public class Examples
 
 	private Node boston, worcester, hartford, chicago, denver, phoenix;
 	private Node portland, newyork, detroit, houston, tulsa;
+
+	private LinkedList<String> testNetwork1Feeders,
+			testNetwork2Feeders, testNetwork3Feeders, testNetwork4Feeders;
+	private Network testNetwork1, testNetwork2, testNetwork3, testNetwork4;
+	private LinkedList<Network> testNetworks;
+	private LinkedList<Pair> testPairs;
 
 	/**
 	 * Constructs the examples class.
@@ -39,6 +47,42 @@ public class Examples
 		flightGraph.addEdge(houston, tulsa);
 		flightGraph.addEdge(portland, newyork);
 		flightGraph.addEdge(detroit, portland);
+
+		testNetwork1Feeders = new LinkedList<String>();
+		testNetwork2Feeders = new LinkedList<String>();
+		testNetwork3Feeders = new LinkedList<String>();
+		testNetwork4Feeders = new LinkedList<String>();
+
+		testNetwork1Feeders.add("Boston");
+		testNetwork1Feeders.add("Worcester");
+		testNetwork1Feeders.add("Hartford");
+
+		testNetwork2Feeders.add("Chicago");
+		testNetwork2Feeders.add("Denver");
+
+		testNetwork3Feeders.add("Phoenix");
+		testNetwork3Feeders.add("Houston");
+		testNetwork3Feeders.add("Tulsa");
+
+		testNetwork4Feeders.add("Portland");
+		testNetwork4Feeders.add("New York");
+		testNetwork4Feeders.add("Detroit");
+
+		testNetwork1 = new Network(testNetwork1Feeders);
+		testNetwork2 = new Network(testNetwork2Feeders);
+		testNetwork3 = new Network(testNetwork3Feeders);
+		testNetwork4 = new Network(testNetwork4Feeders);
+
+		testNetworks = new LinkedList<Network>();
+		testNetworks.add(testNetwork1);
+		testNetworks.add(testNetwork2);
+		testNetworks.add(testNetwork3);
+		testNetworks.add(testNetwork4);
+
+		testPairs = new LinkedList<Pair>();
+		testPairs.add(new Pair("Hartford", "Chicago"));
+		testPairs.add(new Pair("Denver", "Phoenix"));
+		testPairs.add(new Pair("Tulsa", "Portland"));
 	}
 
 	/**
@@ -71,7 +115,7 @@ public class Examples
 	 */
 	boolean testGetNetworks(Tester t)
 	{
-		return t.checkExpect(flightGraph.getNetworks(), null);
+		return t.checkExpect(flightGraph.getNetworks(), testNetworks);
 	}
 
 	/**
@@ -81,6 +125,6 @@ public class Examples
 	 */
 	boolean testGetFlights(Tester t)
 	{
-		return t.checkExpect(flightGraph.getFlights(), null);
+		return t.checkExpect(flightGraph.getFlights(), testPairs);
 	}
 }
