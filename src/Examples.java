@@ -5,11 +5,19 @@
 
 import tester.Tester;
 
+/**
+ * A class to hold Homework 8 examples.
+ */
 public class Examples
 {
 	private Graph flightGraph = new Graph();
-	private Node boston, worcester, hartford, chicago, denver, phoenix, houston, tulsa;
 
+	private Node boston, worcester, hartford, chicago, denver, phoenix;
+	private Node portland, newyork, detroit, houston, tulsa;
+
+	/**
+	 * Constructs the examples class.
+	 */
 	Examples()
 	{
 		boston = flightGraph.newNode("Boston");
@@ -20,12 +28,17 @@ public class Examples
 		phoenix = flightGraph.newNode("Phoenix");
 		houston = flightGraph.newNode("Houston");
 		tulsa = flightGraph.newNode("Tulsa");
+		portland = flightGraph.newNode("Portland");
+		newyork = flightGraph.newNode("New York");
+		detroit = flightGraph.newNode("Detroit");
 
 		flightGraph.addEdge(boston, worcester);
 		flightGraph.addEdge(boston, hartford);
 		flightGraph.addEdge(chicago, denver);
 		flightGraph.addEdge(phoenix, houston);
 		flightGraph.addEdge(houston, tulsa);
+		flightGraph.addEdge(portland, newyork);
+		flightGraph.addEdge(detroit, portland);
 	}
 
 	/**
@@ -45,7 +58,10 @@ public class Examples
 				t.checkExpect(flightGraph.hasRoute(boston, denver), false) &&
 				t.checkExpect(flightGraph.hasRoute(chicago, phoenix), false) &&
 				t.checkExpect(flightGraph.hasRoute(worcester, hartford), true) &&
-				t.checkExpect(flightGraph.hasRoute(chicago, worcester), false);
+				t.checkExpect(flightGraph.hasRoute(chicago, worcester), false) &&
+				t.checkExpect(flightGraph.hasRoute(detroit, newyork), true) &&
+				t.checkExpect(flightGraph.hasRoute(newyork, newyork), true) &&
+				t.checkExpect(flightGraph.hasRoute(detroit, boston), false);
 	}
 
 	/**
